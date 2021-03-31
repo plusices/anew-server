@@ -8,7 +8,18 @@ import (
 	"anew-server/models/system"
 	"anew-server/pkg/common"
 	"anew-server/pkg/utils"
+	"context"
+	"fmt"
+	"os"
+
 	"github.com/gin-gonic/gin"
+
+	// "github.com/Azure-Samples/azure-sdk-for-go-samples/internal/config"
+	// "github.com/Azure-Samples/azure-sdk-for-go-samples/internal/util"
+	"github.com/Azure/go-autorest/autorest/azure/auth"
+
+	// "github.com/Azure-Samples/azure-sdk-for-go-samples/internal/config"
+	"github.com/Azure/azure-sdk-for-go/services/compute/mgmt/2019-07-01/compute"
 )
 
 // 获取列表
@@ -84,7 +95,7 @@ func GetHostInfo(c *gin.Context) {
 	}
 	// 创建服务
 	s := service.New()
-	host,err := s.GetHostById(hostId)
+	host, err := s.GetHostById(hostId)
 	if err != nil {
 		response.FailWithMsg(err.Error())
 		return
@@ -137,4 +148,50 @@ func BatchDeleteHostByIds(c *gin.Context) {
 		return
 	}
 	response.Success()
+}
+
+func ScanAzureHost(c *gin.Context) {
+	os.Setenv("AZURE_CLIENT_ID", "0e9afd24-b96c-4a5e-975a-a4722ffcba8b")
+	os.Setenv("AZURE_TENANT_ID", "9d8b91e7-d3bc-4146-8c5b-311dd8a23b51")
+	os.Setenv("AZURE_CLIENT_SECRET", "Kv_1Z.T5=BMG1utYbS/WAhyU5B9ES4Zi")
+	authorizer, err := auth.NewAuthorizerFromEnvironment()
+
+	vmClient := compute.NewVirtualMachinesClient("2f14f163-de21-4afa-b4e8-78496304745e")
+	if err == nil {
+		vmClient.Authorizer = authorizer
+	}
+	vmClient.Authorizer = authorizer
+
+	for iter, err := vmClient.ListAllComplete(context.Background(), "false"); iter.NotDone(); err = iter.Next() {
+		if err != nil {
+			fmt.Println(err)
+		}
+		fmt.Println("found VM with name %s", *iter.Value().Name)
+		fmt.Println("ComputerName: %s", *iter.Value().OsProfile.ComputerName)
+		fmt.Println("Secrets: %s", *iter.Value().OsProfile.Secrets)
+		fmt.Println("AdminUsername: %s", *iter.Value().OsProfile.AdminUsername)
+		// fmt.Printf("%+v\n", *iter.Value().StorageProfile.ImageReference)
+		// fmt.Println(reflect.TypeOf(*iter))
+		// if *iter.Value().StorageProfile != nil {
+		if iter.Value().StorageProfile.ImageReference.Offer != nil {
+			fmt.Println("ImageReference Offer: %s", *iter.Value().StorageProfile.ImageReference.Offer)
+		}
+		if iter.Value().StorageProfile.ImageReference.Sku != nil {
+			fmt.Println("ImageReference Sku: %s", *iter.Value().StorageProfile.ImageReference.Sku)
+		}
+		// }
+		// fmt.Println("found VM with name %s", *iter.Value().HardwareProfile.VMSize)
+		fmt.Println("Location: %s", *iter.Value().Location)
+		// if *iter.Value().StorageProfile.DataDisks != nil {
+		// 	for disk := range *iter.Value().StorageProfile.DataDisks {
+		// 		fmt.Println("found VM with name %s", disk.Name)
+		// 		fmt.Println("found VM with name %s", disk.DiskSizeGB)
+		// 	}
+		// }
+
+	}
+	// all_vm_list := &vmlist.vmlr.Value
+	// for i, v := range vmlist.vmlr.Value {
+	// 	fmt.Println(v.OsProfile)
+	// }
 }
