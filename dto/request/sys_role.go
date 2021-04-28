@@ -1,6 +1,6 @@
 package request
 
-import "anew-server/dto/response"
+import "ts-go-server/dto/response"
 
 // 请求角色列表结构体
 type RoleReq struct {
@@ -14,7 +14,7 @@ type RoleReq struct {
 // 更新角色权限的结构体
 type UpdateRolePermsReq struct {
 	MenusId []uint `json:"menus_id" form:"menus_id"` // 传多个id
-	ApisId []uint `json:"apis_id" form:"apis_id"` // 传多个id
+	ApisId  []uint `json:"apis_id" form:"apis_id"`   // 传多个id
 }
 
 // 创建角色结构体

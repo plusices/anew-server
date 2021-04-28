@@ -1,8 +1,14 @@
+/*
+ * @Author: tinson.liu
+ * @Date: 2021-03-03 12:00:21
+ * @LastEditors: tinson.liu
+ * @LastEditTime: 2021-04-09 16:34:57
+ * @Description: In User Settings Edit
+ * @FilePath: /ts-go-server/main.go
+ */
 package main
 
 import (
-	"anew-server/initialize"
-	"anew-server/pkg/common"
 	"context"
 	"fmt"
 	"net/http"
@@ -10,6 +16,8 @@ import (
 	"os/signal"
 	"syscall"
 	"time"
+	"ts-go-server/initialize"
+	"ts-go-server/pkg/common"
 )
 
 func main() {
@@ -28,7 +36,7 @@ func main() {
 	// 初始化Casbin
 	initialize.Casbin()
 
-	//是否初始化数据(慎用) $anew-server init
+	//是否初始化数据(慎用) $ts-go-server init
 	if len(os.Args) > 1 {
 		if os.Args[1] == "init" {
 			initialize.InitData()

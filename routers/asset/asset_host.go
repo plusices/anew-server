@@ -2,15 +2,15 @@
  * @Author: tinson.liu
  * @Date: 2021-03-03 12:00:21
  * @LastEditors: tinson.liu
- * @LastEditTime: 2021-03-29 16:28:56
+ * @LastEditTime: 2021-04-04 19:03:11
  * @Description: In User Settings Edit
- * @FilePath: /anew-server/routers/asset/asset_host.go
+ * @FilePath: /ts-go-server/routers/asset/asset_host.go
  */
 package asset
 
 import (
-	"anew-server/api/v1/asset"
-	"anew-server/middleware"
+	"ts-go-server/api/v1/asset"
+	"ts-go-server/middleware"
 
 	jwt "github.com/appleboy/gin-jwt/v2"
 	"github.com/gin-gonic/gin"
@@ -25,6 +25,7 @@ func InitHostRouter(r *gin.RouterGroup, authMiddleware *jwt.GinJWTMiddleware) (R
 		router.GET("/info/:hostId", asset.GetHostInfo)
 		router.POST("/create", asset.CreateHost)
 		router.POST("/scan_azure_host", asset.ScanAzureHost)
+		router.POST("/scan_azure_host2", asset.ScanAzureHostNew)
 		router.PATCH("/update/:hostId", asset.UpdateHostById)
 		router.DELETE("/delete", asset.BatchDeleteHostByIds)
 		router.GET("/ssh", asset.SShTunnel)

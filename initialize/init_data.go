@@ -1,12 +1,13 @@
 package initialize
 
 import (
-	"anew-server/dto/service"
-	"anew-server/models"
-	"anew-server/models/system"
-	"anew-server/pkg/common"
-	"anew-server/pkg/utils"
 	"errors"
+	"ts-go-server/dto/service"
+	"ts-go-server/models"
+	"ts-go-server/models/system"
+	"ts-go-server/pkg/common"
+	"ts-go-server/pkg/utils"
+
 	"gorm.io/gorm"
 )
 

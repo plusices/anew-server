@@ -1,16 +1,17 @@
 package service
 
 import (
-	"anew-server/dto/request"
-	"anew-server/dto/response"
-	"anew-server/models/system"
-	"anew-server/pkg/common"
-	"anew-server/pkg/utils"
 	"errors"
 	"fmt"
-	"gorm.io/gorm"
 	"sort"
 	"strings"
+	"ts-go-server/dto/request"
+	"ts-go-server/dto/response"
+	"ts-go-server/models/system"
+	"ts-go-server/pkg/common"
+	"ts-go-server/pkg/utils"
+
+	"gorm.io/gorm"
 )
 
 // 获取所有部门信息
@@ -61,7 +62,6 @@ func GenDeptTree(parent *response.DeptTreeResp, depts []system.SysDept) []respon
 	return tree
 }
 
-
 // 创建部门
 func (s *MysqlService) CreateDept(req *request.CreateDeptReq) (err error) {
 	var dept system.SysDept
@@ -93,13 +93,13 @@ func (s *MysqlService) UpdateDeptById(id uint, req request.UpdateDeptReq) (err e
 func (s *MysqlService) DeleteDeptByIds(ids []uint) (err error) {
 	var dept system.SysDept
 	// 先解除父级关联
-	err = s.db.Table(dept.TableName()).Where("parent_id IN (?)", ids).Update("parent_id",0).Error
-	if err != nil{
+	err = s.db.Table(dept.TableName()).Where("parent_id IN (?)", ids).Update("parent_id", 0).Error
+	if err != nil {
 		return err
 	}
 	// 再删除
 	err = s.db.Where("id IN (?)", ids).Delete(&dept).Error
-	if err != nil{
+	if err != nil {
 		return err
 	}
 	return

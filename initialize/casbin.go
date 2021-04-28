@@ -1,15 +1,16 @@
 package initialize
 
 import (
-	"anew-server/pkg/common"
+	"time"
+	"ts-go-server/pkg/common"
+
 	"github.com/casbin/casbin/v2"
 	"github.com/casbin/casbin/v2/model"
 	gormadapter "github.com/casbin/gorm-adapter/v3"
-	"time"
 )
 
 // 获取casbin策略管理器
-func Casbin()  {
+func Casbin() {
 	// 初始化数据库适配器, 添加自定义表前缀, casbin不使用事务管理, 因为他内部使用到事务, 重复用会导致冲突
 	// casbin默认表名casbin_rule, 为了与项目统一改写一下规则
 	// 注意: gormadapter.CasbinTableName内部添加了下划线, 这里不再多此一举

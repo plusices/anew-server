@@ -1,7 +1,8 @@
 package api
 
 import (
-	"anew-server/dto/response"
+	"ts-go-server/dto/response"
+
 	"github.com/gin-gonic/gin"
 )
 

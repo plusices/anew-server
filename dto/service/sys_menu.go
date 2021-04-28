@@ -1,13 +1,14 @@
 package service
 
 import (
-	"anew-server/dto/request"
-	"anew-server/dto/response"
-	"anew-server/models/system"
-	"anew-server/pkg/utils"
 	"errors"
-	"gorm.io/gorm"
 	"sort"
+	"ts-go-server/dto/request"
+	"ts-go-server/dto/response"
+	"ts-go-server/models/system"
+	"ts-go-server/pkg/utils"
+
+	"gorm.io/gorm"
 )
 
 // 获取用户菜单的切片
@@ -37,7 +38,6 @@ func (s *MysqlService) GetMenus() []system.SysMenu {
 	return menus
 }
 
-
 // 生成菜单树
 func GenMenuTree(parent *response.MenuTreeResp, menus []system.SysMenu) []response.MenuTreeResp {
 	tree := make(response.MenuTreeRespList, 0)
@@ -62,8 +62,6 @@ func GenMenuTree(parent *response.MenuTreeResp, menus []system.SysMenu) []respon
 	sort.Sort(tree)
 	return tree
 }
-
-
 
 // 创建菜单
 func (s *MysqlService) CreateMenu(req *request.CreateMenuReq) (err error) {
@@ -96,19 +94,17 @@ func (s *MysqlService) UpdateMenuById(id uint, req request.UpdateMenuReq) (err e
 func (s *MysqlService) DeleteMenuByIds(ids []uint) (err error) {
 	var menu system.SysMenu
 	// 先解除父级关联
-	err = s.db.Table(menu.TableName()).Where("parent_id IN (?)", ids).Update("parent_id",0).Error
-	if err != nil{
+	err = s.db.Table(menu.TableName()).Where("parent_id IN (?)", ids).Update("parent_id", 0).Error
+	if err != nil {
 		return err
 	}
 	// 再删除
 	err = s.db.Where("id IN (?)", ids).Delete(&menu).Error
-	if err != nil{
+	if err != nil {
 		return err
 	}
 	return
 }
-
-
 
 // 获取全部菜单, 非菜单树
 func (s *MysqlService) getAllMenu() []system.SysMenu {

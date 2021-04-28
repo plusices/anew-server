@@ -1,12 +1,12 @@
 package cacheService
 
 import (
-	"anew-server/pkg/common"
-	"anew-server/pkg/redis"
-	"anew-server/pkg/utils"
 	"bytes"
 	"encoding/gob"
 	"time"
+	"ts-go-server/pkg/common"
+	"ts-go-server/pkg/redis"
+	"ts-go-server/pkg/utils"
 )
 
 const (

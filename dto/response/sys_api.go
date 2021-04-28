@@ -1,7 +1,7 @@
 package response
 
 import (
-	"anew-server/models"
+	"ts-go-server/models"
 )
 
 // 接口信息响应, 字段含义见models

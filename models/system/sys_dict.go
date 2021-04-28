@@ -1,6 +1,6 @@
 package system
 
-import "anew-server/models"
+import "ts-go-server/models"
 
 // 数据字典
 type SysDict struct {

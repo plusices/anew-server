@@ -1,6 +1,6 @@
 package asset
 
-import "anew-server/models"
+import "ts-go-server/models"
 
 // ssh审计表
 type SShRecord struct {
@@ -14,7 +14,7 @@ type SShRecord struct {
 	ConnectTime models.LocalTime `gorm:"comment:'接入时间'" json:"connect_time"`
 	LogoutTime  models.LocalTime `gorm:"comment:'注销时间'" json:"logout_time"`
 	//InputData   string           `json:"input_data" gorm:"type:blob;comment:'输入命令(二进制存储)';size:128"`
-	CastFileName    string           `json:"cast_file_name" gorm:"comment:'录像文件名';size:128"`
+	CastFileName string `json:"cast_file_name" gorm:"comment:'录像文件名';size:128"`
 }
 
 func (m SShRecord) TableName() string {

@@ -1,8 +1,9 @@
 package redis
 
 import (
-	"anew-server/pkg/common"
 	"context"
+	"ts-go-server/pkg/common"
+
 	"github.com/go-redis/redis/v8"
 )
 
@@ -16,6 +17,6 @@ type StringOperation struct {
 func NewStringOperation() *StringOperation {
 	return &StringOperation{
 		redis: common.Redis,
-		ctx:context.Background(),
+		ctx:   context.Background(),
 	}
 }

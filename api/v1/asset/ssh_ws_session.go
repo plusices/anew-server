@@ -1,20 +1,21 @@
 package asset
 
 import (
-	"anew-server/models"
-	"anew-server/models/asset"
-	"anew-server/pkg/asciicast2"
-	"anew-server/pkg/common"
-	"anew-server/pkg/utils"
 	"bytes"
 	"encoding/json"
-	"github.com/gorilla/websocket"
-	"golang.org/x/crypto/ssh"
 	"io"
 	"os"
 	"strconv"
 	"sync"
 	"time"
+	"ts-go-server/models"
+	"ts-go-server/models/asset"
+	"ts-go-server/pkg/asciicast2"
+	"ts-go-server/pkg/common"
+	"ts-go-server/pkg/utils"
+
+	"github.com/gorilla/websocket"
+	"golang.org/x/crypto/ssh"
 )
 
 // 参考 https://github.com/dejavuzhou/felix
@@ -152,7 +153,7 @@ func (s *SShSession) SendOutput(c *Connection, exitCh chan bool) {
 		},
 	}
 	startTime := time.Now()
-	castFile := c.IpAddress + "_"+ strconv.FormatInt(time.Now().UnixNano(), 10) + ".cast"
+	castFile := c.IpAddress + "_" + strconv.FormatInt(time.Now().UnixNano(), 10) + ".cast"
 	c.CastFileName = castFile
 	if !utils.FileExist(common.Conf.SSh.RecordDir) {
 		_ = os.Mkdir(common.Conf.SSh.RecordDir, 644)

@@ -1,6 +1,6 @@
 package system
 
-import "anew-server/models"
+import "ts-go-server/models"
 
 // 系统角色表
 type SysRole struct {

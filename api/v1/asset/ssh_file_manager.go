@@ -1,17 +1,18 @@
 package asset
 
 import (
-	"anew-server/dto/response"
-	"anew-server/models"
-	"anew-server/pkg/utils"
 	"bytes"
 	"fmt"
-	"github.com/gin-gonic/gin"
 	"net/http"
 	"os"
 	"path"
 	"path/filepath"
 	"strings"
+	"ts-go-server/dto/response"
+	"ts-go-server/models"
+	"ts-go-server/pkg/utils"
+
+	"github.com/gin-gonic/gin"
 )
 
 // 获取目录数据

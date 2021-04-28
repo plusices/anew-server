@@ -1,12 +1,13 @@
 package system
 
 import (
-	"anew-server/dto/request"
-	"anew-server/dto/response"
-	"anew-server/dto/service"
-	"anew-server/models/system"
-	"anew-server/pkg/common"
-	"anew-server/pkg/utils"
+	"ts-go-server/dto/request"
+	"ts-go-server/dto/response"
+	"ts-go-server/dto/service"
+	"ts-go-server/models/system"
+	"ts-go-server/pkg/common"
+	"ts-go-server/pkg/utils"
+
 	"github.com/gin-gonic/gin"
 )
 
@@ -33,7 +34,7 @@ func GetApis(c *gin.Context) {
 	if req.Tree {
 		// 转换成树结构
 		tree := make([]response.ApiTreeResp, 0)
-		for _,api := range respStruct{
+		for _, api := range respStruct {
 			existIndex := -1
 			children := make([]response.ApiListResp, 0)
 			for index, leaf := range tree {
@@ -70,7 +71,6 @@ func GetApis(c *gin.Context) {
 	resp.DataList = respStruct
 	response.SuccessWithData(resp)
 }
-
 
 // 创建接口
 func CreateApi(c *gin.Context) {

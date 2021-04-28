@@ -1,22 +1,23 @@
 package asset
 
 import (
-	system2 "anew-server/api/v1/system"
-	"anew-server/dto/service"
-	"anew-server/models"
-	"anew-server/models/system"
-	"anew-server/pkg/common"
-	"anew-server/pkg/sshx"
-	"anew-server/pkg/utils"
 	"errors"
 	"fmt"
+	"net/http"
+	"strconv"
+	"time"
+	system2 "ts-go-server/api/v1/system"
+	"ts-go-server/dto/service"
+	"ts-go-server/models"
+	"ts-go-server/models/system"
+	"ts-go-server/pkg/common"
+	"ts-go-server/pkg/sshx"
+	"ts-go-server/pkg/utils"
+
 	"github.com/gin-gonic/gin"
 	"github.com/gorilla/websocket"
 	"github.com/pkg/sftp"
 	"golang.org/x/crypto/ssh"
-	"net/http"
-	"strconv"
-	"time"
 )
 
 var (
@@ -135,7 +136,7 @@ func SShTunnel(c *gin.Context) {
 			Name:      user.(system.SysUser).Name,
 			HostName:  host.HostName,
 			User:      host.User,
-			IpAddress: host.IpAddress,
+			IpAddress: host.PublicIp,
 			Port:      host.Port,
 			ConnectTime: models.LocalTime{
 				Time: time.Now(),
@@ -165,7 +166,7 @@ func SShTunnel(c *gin.Context) {
 			return
 		}
 	}
-	addr := fmt.Sprintf("%s:%s", host.IpAddress, host.Port)
+	addr := fmt.Sprintf("%s:%s", host.PublicIp, host.Port)
 	sshClient, err := ssh.Dial("tcp", addr, conf)
 	if err != nil {
 		client.Conn.WriteMessage(websocket.TextMessage, utils.Str2Bytes(fmt.Sprintf("SSH无法连接: %s", err.Error())))
@@ -188,7 +189,7 @@ func SShTunnel(c *gin.Context) {
 	}
 	defer sshSession.Session.Close()
 	quitChan := make(chan bool, 3)
-	go sshSession.SendOutput(client, quitChan)  // 协程输出ws和进行录像
+	go sshSession.SendOutput(client, quitChan) // 协程输出ws和进行录像
 	go sshSession.SessionWait(quitChan)
 	sshSession.ReceiveWsMsg(client, quitChan)
 

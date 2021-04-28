@@ -1,13 +1,13 @@
 package request
 
 import (
-	"anew-server/dto/response"
 	"time"
+	"ts-go-server/dto/response"
 )
 
 // 获取操作日志列表结构体
 type OperLogReq struct {
-	Name            string `json:"name" form:"name"`
+	Name              string `json:"name" form:"name"`
 	Method            string `json:"method" form:"method"`
 	Path              string `json:"path" form:"path"`
 	Username          string `json:"username" form:"username"`

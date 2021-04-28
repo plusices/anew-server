@@ -1,12 +1,13 @@
 package zapgorm2
 
 import (
-	"anew-server/pkg/common"
 	"context"
 	"fmt"
+	"time"
+	"ts-go-server/pkg/common"
+
 	"go.uber.org/zap"
 	gormlogger "gorm.io/gorm/logger"
-	"time"
 )
 
 type Logger struct {

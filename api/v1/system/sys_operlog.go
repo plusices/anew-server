@@ -1,16 +1,17 @@
 package system
 
 import (
-	"anew-server/dto/cacheService"
-	"anew-server/dto/request"
-	"anew-server/dto/response"
-	"anew-server/dto/service"
-	"anew-server/models/system"
-	"anew-server/pkg/redis"
-	"anew-server/pkg/utils"
-	"github.com/gin-gonic/gin"
 	"strconv"
 	"time"
+	"ts-go-server/dto/cacheService"
+	"ts-go-server/dto/request"
+	"ts-go-server/dto/response"
+	"ts-go-server/dto/service"
+	"ts-go-server/models/system"
+	"ts-go-server/pkg/redis"
+	"ts-go-server/pkg/utils"
+
+	"github.com/gin-gonic/gin"
 )
 
 // 获取操作日志列表

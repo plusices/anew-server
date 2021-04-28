@@ -1,9 +1,17 @@
+/*
+ * @Author: tinson.liu
+ * @Date: 2021-03-03 12:00:21
+ * @LastEditors: tinson.liu
+ * @LastEditTime: 2021-04-13 12:01:28
+ * @Description: In User Settings Edit
+ * @FilePath: /ts-go-server/pkg/utils/json.go
+ */
 package utils
 
 import (
-	"anew-server/pkg/common"
 	"encoding/json"
 	"fmt"
+	"ts-go-server/pkg/common"
 )
 
 // 结构体转为json
@@ -18,6 +26,7 @@ func Struct2Json(obj interface{}) string {
 // json转为结构体
 func Json2Struct(str string, obj interface{}) {
 	// 将json转为结构体
+	fmt.Printf("%=v", str)
 	err := json.Unmarshal([]byte(str), obj)
 	if err != nil {
 		common.Log.Error(fmt.Sprintf("[Json2Struct]转换异常: %v", err))

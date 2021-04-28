@@ -1,22 +1,23 @@
 package service
 
 import (
-	"anew-server/dto/request"
-	"anew-server/dto/response"
-	"anew-server/models/system"
-	"anew-server/pkg/common"
-	"anew-server/pkg/utils"
 	"errors"
 	"fmt"
-	"gorm.io/gorm"
 	"strings"
+	"ts-go-server/dto/request"
+	"ts-go-server/dto/response"
+	"ts-go-server/models/system"
+	"ts-go-server/pkg/common"
+	"ts-go-server/pkg/utils"
+
+	"gorm.io/gorm"
 )
 
 // 获取所有字典信息
 func (s *MysqlService) GetDicts(req *request.DictListReq) []system.SysDict {
 	Dicts := make([]system.SysDict, 0)
 	db := common.Mysql
-	typeKey:=strings.TrimSpace(req.TypeKey)
+	typeKey := strings.TrimSpace(req.TypeKey)
 	if typeKey != "" {
 		var dist system.SysDict
 		db = db.Preload("Dicts", "status = ?", true).Where("`key` LIKE ?", fmt.Sprintf("%%%s%%", typeKey)).First(&dist)

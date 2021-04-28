@@ -1,15 +1,9 @@
 package sshx
 
 import (
-	"anew-server/pkg/common"
-	"anew-server/pkg/utils"
 	"context"
 	"errors"
 	"fmt"
-	"github.com/pkg/sftp"
-	"go.uber.org/zap"
-	"golang.org/x/crypto/ssh"
-	"golang.org/x/crypto/ssh/agent"
 	"io"
 	"io/ioutil"
 	"net"
@@ -17,7 +11,15 @@ import (
 	"path/filepath"
 	"strings"
 	"time"
+	"ts-go-server/pkg/common"
+	"ts-go-server/pkg/utils"
+
+	"github.com/pkg/sftp"
+	"go.uber.org/zap"
+	"golang.org/x/crypto/ssh"
+	"golang.org/x/crypto/ssh/agent"
 )
+
 // code by mylxsw  from https://github.com/mylxsw/sshx/
 
 // 认证配置
@@ -35,17 +37,19 @@ type SShClient struct {
 	Logger *zap.SugaredLogger
 }
 type SessionOption func(session *ssh.Session) error
+
 // ErrRemoteFileExisted 远程服务器已经存在该文件
 var ErrRemoteFileExisted = errors.New("remote file already exist")
+
 // ErrSessionCanceled 会话因为上下文对象的取消而被取消
 var ErrSessionCanceled = errors.New("session canceled because context canceled")
+
 // ErrFileFingerNotMatch 文件指纹不匹配
 var ErrFileFingerNotMatch = errors.New("file finger not match")
 
 func New(host string, conf *ssh.ClientConfig) *SShClient {
 	return &SShClient{Host: host, Conf: conf, Logger: common.Log}
 }
-
 
 //func main {
 //	conf, _ := NewAuthConfig("root", "123123", "", "")

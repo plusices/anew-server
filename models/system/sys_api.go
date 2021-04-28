@@ -1,6 +1,6 @@
 package system
 
-import "anew-server/models"
+import "ts-go-server/models"
 
 // 系统接口表
 type SysApi struct {

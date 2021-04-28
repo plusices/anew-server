@@ -1,12 +1,13 @@
 package middleware
 
 import (
-	"anew-server/api/v1/system"
-	"anew-server/dto/response"
-	system2 "anew-server/models/system"
-	"anew-server/pkg/common"
-	"github.com/gin-gonic/gin"
 	"strings"
+	"ts-go-server/api/v1/system"
+	"ts-go-server/dto/response"
+	system2 "ts-go-server/models/system"
+	"ts-go-server/pkg/common"
+
+	"github.com/gin-gonic/gin"
 )
 
 // Casbin中间件, 基于RBAC的权限访问控制模型

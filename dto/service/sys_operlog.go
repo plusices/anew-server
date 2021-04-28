@@ -1,11 +1,11 @@
 package service
 
 import (
-	"anew-server/dto/request"
-	"anew-server/models/system"
-	"anew-server/pkg/common"
 	"fmt"
 	"strings"
+	"ts-go-server/dto/request"
+	"ts-go-server/models/system"
+	"ts-go-server/pkg/common"
 )
 
 // 获取操作日志

@@ -1,7 +1,7 @@
 package response
 
 import (
-	"anew-server/models"
+	"ts-go-server/models"
 )
 
 // User login response structure

@@ -1,12 +1,13 @@
 package asset
 
 import (
-	"anew-server/dto/request"
-	"anew-server/dto/response"
-	"anew-server/dto/service"
-	"anew-server/models/asset"
-	"anew-server/pkg/common"
 	"fmt"
+	"ts-go-server/dto/request"
+	"ts-go-server/dto/response"
+	"ts-go-server/dto/service"
+	"ts-go-server/models/asset"
+	"ts-go-server/pkg/common"
+
 	"github.com/gin-gonic/gin"
 )
 

@@ -1,7 +1,7 @@
 package initialize
 
 import (
-	"anew-server/pkg/common"
+	"ts-go-server/pkg/common"
 )
 
 // 初始化日志

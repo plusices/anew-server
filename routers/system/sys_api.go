@@ -1,8 +1,9 @@
 package system
 
 import (
-	"anew-server/api/v1/system"
-	"anew-server/middleware"
+	"ts-go-server/api/v1/system"
+	"ts-go-server/middleware"
+
 	jwt "github.com/appleboy/gin-jwt/v2"
 	"github.com/gin-gonic/gin"
 )

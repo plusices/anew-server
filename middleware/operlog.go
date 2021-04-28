@@ -1,20 +1,21 @@
 package middleware
 
 import (
-	"anew-server/api/v1/system"
-	"anew-server/dto/response"
-	"anew-server/models"
-	system2 "anew-server/models/system"
-	"anew-server/pkg/common"
-	"anew-server/pkg/utils"
 	"bytes"
-	"github.com/gin-gonic/gin"
 	"io/ioutil"
 	"mime/multipart"
 	"net/http"
 	"regexp"
 	"strings"
 	"time"
+	"ts-go-server/api/v1/system"
+	"ts-go-server/dto/response"
+	"ts-go-server/models"
+	system2 "ts-go-server/models/system"
+	"ts-go-server/pkg/common"
+	"ts-go-server/pkg/utils"
+
+	"github.com/gin-gonic/gin"
 )
 
 // 操作日志

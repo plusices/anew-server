@@ -71,9 +71,9 @@ jwt:
   # 服务端密钥
   key: vFr3RRkxlBG0ggRYLG
   # token过期时间, 小时
-  timeout: 4
+  timeout: 240
   # token更新时间, 小时
-  max-refresh: 4
+  max-refresh: 240
 
 # 上传配置
 upload:

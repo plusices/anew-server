@@ -1,10 +1,10 @@
 package utils
 
 import (
-	"anew-server/pkg/common"
 	"fmt"
 	"io/ioutil"
 	"net/http"
+	"ts-go-server/pkg/common"
 )
 
 type IpResp struct {

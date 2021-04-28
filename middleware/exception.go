@@ -1,11 +1,12 @@
 package middleware
 
 import (
-	"anew-server/dto/response"
-	"anew-server/pkg/common"
 	"fmt"
-	"github.com/gin-gonic/gin"
 	"runtime/debug"
+	"ts-go-server/dto/response"
+	"ts-go-server/pkg/common"
+
+	"github.com/gin-gonic/gin"
 )
 
 // 全局异常处理中间件

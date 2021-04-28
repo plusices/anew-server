@@ -1,7 +1,8 @@
 package initialize
 
 import (
-	"anew-server/pkg/common"
+	"ts-go-server/pkg/common"
+
 	"github.com/go-playground/locales/zh"
 	ut "github.com/go-playground/universal-translator"
 	"github.com/go-playground/validator/v10"

@@ -1,10 +1,10 @@
 package _examples
 
 import (
-	"anew-server/pkg/sshx"
 	"context"
 	"fmt"
 	"time"
+	"ts-go-server/pkg/sshx"
 )
 
 func main() {

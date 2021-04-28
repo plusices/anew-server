@@ -1,14 +1,16 @@
 package service
 
 import (
-	"anew-server/dto/request"
-	"anew-server/models/asset"
-	"anew-server/pkg/utils"
 	"errors"
 	"fmt"
+	"reflect"
+	"strings"
+	"ts-go-server/dto/request"
+	"ts-go-server/models/asset"
+	"ts-go-server/pkg/utils"
+
 	"github.com/gin-gonic/gin"
 	"gorm.io/gorm"
-	"strings"
 )
 
 func (s *MysqlService) GetHosts(req *request.HostReq) ([]asset.AssetHost, error) {
@@ -23,9 +25,9 @@ func (s *MysqlService) GetHosts(req *request.HostReq) ([]asset.AssetHost, error)
 	if host_name != "" {
 		query = query.Where("host_name LIKE ?", fmt.Sprintf("%%%s%%", host_name))
 	}
-	ip_address := strings.TrimSpace(req.IpAddress)
+	ip_address := strings.TrimSpace(req.PublicIp)
 	if ip_address != "" {
-		query = query.Where("ip_address LIKE ?", fmt.Sprintf("%%%s%%", ip_address))
+		query = query.Where("public_ip LIKE ?", fmt.Sprintf("%%%s%%", ip_address))
 	}
 	os_version := strings.TrimSpace(req.OSVersion)
 	if os_version != "" {
@@ -70,6 +72,16 @@ func (s *MysqlService) CreateHost(req *request.CreateHostReq) (err error) {
 	return
 }
 
+// 创建或者更新
+func (s *MysqlService) CreateOrUpdateHostByField(fieldName string, req *request.CreateHostReq) (err error) {
+	var host asset.AssetHost
+	utils.Struct2StructByJson(req, &host)
+	if s.db.Model(&host).Where(fieldName+" = ?", req.InstanceId).Updates(&host).RowsAffected == 0 {
+		s.db.Create(&host)
+	}
+	return
+}
+
 // 更新
 func (s *MysqlService) UpdateHostById(id uint, req gin.H) (err error) {
 	var oldHost asset.AssetHost
@@ -86,10 +98,38 @@ func (s *MysqlService) UpdateHostById(id uint, req gin.H) (err error) {
 	return
 }
 
+// 根据字段更新
+func (s *MysqlService) UpdateHostByField(fieldName string, req *request.CreateHostReq) (err error) {
+	var oldHost asset.AssetHost
+	var newhost asset.AssetHost
+	utils.Struct2StructByJson(req, &newhost)
+	// immutable := reflect.ValueOf(newhost)
+	// fmt.Printf("%+v", immutable)
+	// fmt.Printf("yes...")
+	field, _ := reflect.TypeOf(newhost).FieldByName(fieldName)
+	tag := string(field.Tag.Get("json"))
+	fmt.Println("tag is :", tag)
+	fmt.Printf("reflect value is :%+v", reflect.ValueOf(newhost).FieldByName(fieldName).Interface().(string))
+	fieldValue := reflect.ValueOf(newhost).FieldByName(fieldName).Interface().(string)
+	query := s.db.Table(oldHost.TableName()).Where(tag+" = ?", fieldValue).First(&oldHost)
+	fmt.Printf("query is : %+v", query)
+	if query.Error == gorm.ErrRecordNotFound {
+		err = s.db.Create(&newhost).Error
+		return
+	} else {
+		// 比对增量字段
+		var m asset.AssetHost
+		utils.CompareDifferenceStructByJson(oldHost, newhost, &m)
+		// 更新指定列
+		err = query.Updates(m).Error
+		return
+	}
+}
+
 // 批量删除
 func (s *MysqlService) DeleteHostByIds(ids []uint) (err error) {
 
-	return s.db.Where("id IN (?)", ids).Delete(asset.AssetHost{}).Error
+	return s.db.Where("id IN (?)", ids).Delete(&asset.AssetHost{}).Error
 }
 
 func (s *MysqlService) GetHostById(id uint) (asset.AssetHost, error) {

@@ -1,10 +1,11 @@
 package middleware
 
 import (
-	"anew-server/pkg/common"
 	"fmt"
-	"github.com/gin-gonic/gin"
 	"time"
+	"ts-go-server/pkg/common"
+
+	"github.com/gin-gonic/gin"
 )
 
 // 访问日志

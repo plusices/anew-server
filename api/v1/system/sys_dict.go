@@ -1,12 +1,13 @@
 package system
 
 import (
-	"anew-server/dto/request"
-	"anew-server/dto/response"
-	"anew-server/dto/service"
-	"anew-server/models/system"
-	"anew-server/pkg/common"
-	"anew-server/pkg/utils"
+	"ts-go-server/dto/request"
+	"ts-go-server/dto/response"
+	"ts-go-server/dto/service"
+	"ts-go-server/models/system"
+	"ts-go-server/pkg/common"
+	"ts-go-server/pkg/utils"
+
 	"github.com/gin-gonic/gin"
 )
 

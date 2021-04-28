@@ -1,12 +1,13 @@
 package initialize
 
 import (
-	"anew-server/middleware"
-	"anew-server/pkg/common"
-	"anew-server/routers"
-	"anew-server/routers/asset"
-	"anew-server/routers/system"
 	"fmt"
+	"ts-go-server/middleware"
+	"ts-go-server/pkg/common"
+	"ts-go-server/routers"
+	"ts-go-server/routers/asset"
+	"ts-go-server/routers/system"
+
 	"github.com/gin-gonic/gin"
 )
 

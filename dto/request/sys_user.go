@@ -1,7 +1,7 @@
 package request
 
 import (
-	"anew-server/dto/response"
+	"ts-go-server/dto/response"
 )
 
 // User login structure

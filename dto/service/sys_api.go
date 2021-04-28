@@ -1,16 +1,16 @@
 package service
 
 import (
-	"anew-server/dto/request"
-	"anew-server/models/system"
-	"anew-server/pkg/utils"
 	"errors"
 	"fmt"
+	"strings"
+	"ts-go-server/dto/request"
+	"ts-go-server/models/system"
+	"ts-go-server/pkg/utils"
+
 	"github.com/gin-gonic/gin"
 	"gorm.io/gorm"
-	"strings"
 )
-
 
 func (s *MysqlService) GetApis(req *request.ApiReq) ([]system.SysApi, error) {
 	var err error

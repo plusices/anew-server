@@ -1,16 +1,17 @@
 package middleware
 
 import (
-	"anew-server/dto/request"
-	"anew-server/dto/response"
-	"anew-server/dto/service"
-	"anew-server/pkg/common"
-	"anew-server/pkg/redis"
-	"anew-server/pkg/utils"
 	"fmt"
+	"time"
+	"ts-go-server/dto/request"
+	"ts-go-server/dto/response"
+	"ts-go-server/dto/service"
+	"ts-go-server/pkg/common"
+	"ts-go-server/pkg/redis"
+	"ts-go-server/pkg/utils"
+
 	jwt "github.com/appleboy/gin-jwt/v2"
 	"github.com/gin-gonic/gin"
-	"time"
 )
 
 // 创建一个userInfo全局变量来返回用户信息

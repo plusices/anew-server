@@ -1,13 +1,14 @@
 package system
 
 import (
-	"anew-server/dto/request"
-	"anew-server/dto/response"
-	"anew-server/dto/service"
-	"anew-server/models/system"
-	"anew-server/pkg/common"
-	"anew-server/pkg/utils"
 	"fmt"
+	"ts-go-server/dto/request"
+	"ts-go-server/dto/response"
+	"ts-go-server/dto/service"
+	"ts-go-server/models/system"
+	"ts-go-server/pkg/common"
+	"ts-go-server/pkg/utils"
+
 	"github.com/gin-gonic/gin"
 )
 
@@ -156,7 +157,7 @@ func GetPermsByRoleId(c *gin.Context) {
 	// 创建服务
 	s := service.New()
 	// 绑定参数
-	resp,err := s.GetPermsByRoleId(utils.Str2Uint(c.Param("roleId")))
+	resp, err := s.GetPermsByRoleId(utils.Str2Uint(c.Param("roleId")))
 	if err != nil {
 		response.FailWithMsg(err.Error())
 		return

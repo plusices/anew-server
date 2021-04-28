@@ -1,7 +1,8 @@
 package routers
 
 import (
-	"anew-server/api"
+	"ts-go-server/api"
+
 	"github.com/gin-gonic/gin"
 )
 

@@ -1,8 +1,9 @@
 package asset
 
 import (
-	"anew-server/dto/request"
-	"anew-server/dto/response"
+	"ts-go-server/dto/request"
+	"ts-go-server/dto/response"
+
 	"github.com/gin-gonic/gin"
 )
 

@@ -1,11 +1,11 @@
-module anew-server
+module ts-go-server
 
 go 1.15
 
 require (
 	github.com/Azure-Samples/azure-sdk-for-go-samples v0.0.0-20210318230842-36cb20716fe6
 	github.com/Azure/azure-sdk-for-go v52.6.0+incompatible
-	github.com/Azure/go-autorest/autorest v0.11.18 // indirect
+	github.com/Azure/go-autorest/autorest v0.11.18
 	github.com/Azure/go-autorest/autorest/azure/auth v0.5.7
 	github.com/Azure/go-autorest/autorest/validation v0.3.1 // indirect
 	github.com/Masterminds/semver v1.5.0 // indirect
@@ -34,6 +34,7 @@ require (
 	golang.org/x/sys v0.0.0-20210326220804-49726bf1d181 // indirect
 	golang.org/x/tools v0.1.0 // indirect
 	google.golang.org/genproto v0.0.0-20201110150050-8816d57aaa9a
+	google.golang.org/grpc v1.27.1
 	gorm.io/driver/mysql v1.0.1
 	gorm.io/gorm v1.20.12
 	k8s.io/apiserver v0.20.5

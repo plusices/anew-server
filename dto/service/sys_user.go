@@ -1,15 +1,16 @@
 package service
 
 import (
-	"anew-server/dto/request"
-	"anew-server/dto/response"
-	"anew-server/models/system"
-	"anew-server/pkg/common"
-	"anew-server/pkg/utils"
 	"errors"
 	"fmt"
-	"gorm.io/gorm"
 	"strings"
+	"ts-go-server/dto/request"
+	"ts-go-server/dto/response"
+	"ts-go-server/models/system"
+	"ts-go-server/pkg/common"
+	"ts-go-server/pkg/utils"
+
+	"gorm.io/gorm"
 )
 
 // 登录校验,返回指定信息
@@ -98,10 +99,10 @@ func (s *MysqlService) UpdateUserById(id uint, req request.UpdateUserReq) (err e
 	// 比对增量字段,使用map确保gorm可更新零值
 	var m map[string]interface{}
 	utils.CompareDifferenceStructByJson(oldUser, req, &m)
-	delete(m,"password")
+	delete(m, "password")
 	if password != "" {
 		// 更新密码
-		err = query.Update("password",password).Updates(m).Error
+		err = query.Update("password", password).Updates(m).Error
 	} else {
 		// 更新指定列
 		err = query.Updates(m).Error

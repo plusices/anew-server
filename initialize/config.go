@@ -1,12 +1,13 @@
 package initialize
 
 import (
-	"anew-server/pkg/common"
 	"bytes"
 	"fmt"
+	"os"
+	"ts-go-server/pkg/common"
+
 	"github.com/gobuffalo/packr/v2"
 	"github.com/spf13/viper"
-	"os"
 )
 
 const (

@@ -1,6 +1,6 @@
 package request
 
-import "anew-server/dto/response"
+import "ts-go-server/dto/response"
 
 // 获取接口列表结构体
 type ApiReq struct {
@@ -15,11 +15,11 @@ type ApiReq struct {
 
 // 创建接口结构体
 type CreateApiReq struct {
-	Name              string `json:"name" form:"name" validate:"required"`
+	Name     string `json:"name" form:"name" validate:"required"`
 	Method   string `json:"method" validate:"required"`
 	Path     string `json:"path" validate:"required"`
 	Category string `json:"category" validate:"required"`
-	Creator    string `json:"creator" form:"creator"`
+	Creator  string `json:"creator" form:"creator"`
 	Desc     string `json:"desc"`
 }
 

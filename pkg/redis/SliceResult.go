@@ -1,13 +1,13 @@
 package redis
 
 import (
-	"anew-server/pkg/common"
 	"fmt"
+	"ts-go-server/pkg/common"
 )
 
 type SliceResult struct {
 	Result []interface{}
-	Err error
+	Err    error
 }
 
 func NewSliceResult(result []interface{}, err error) *SliceResult {
@@ -21,6 +21,7 @@ func (this SliceResult) Unwrap() []interface{} {
 	}
 	return this.Result
 }
+
 //获取key对应的值，若err则返回指定切片
 func (this SliceResult) Unwrap_Or(v []interface{}) []interface{} {
 	if this.Err != nil {

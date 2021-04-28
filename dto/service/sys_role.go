@@ -1,16 +1,17 @@
 package service
 
 import (
-	"anew-server/dto/request"
-	"anew-server/dto/response"
-	"anew-server/models/system"
-	"anew-server/pkg/common"
-	"anew-server/pkg/utils"
 	"errors"
 	"fmt"
+	"strings"
+	"ts-go-server/dto/request"
+	"ts-go-server/dto/response"
+	"ts-go-server/models/system"
+	"ts-go-server/pkg/common"
+	"ts-go-server/pkg/utils"
+
 	"github.com/gin-gonic/gin"
 	"gorm.io/gorm"
-	"strings"
 )
 
 // 获取所有角色
@@ -64,8 +65,8 @@ func (s *MysqlService) GetPermsByRoleId(roleId uint) (response.RolePermsResp, er
 	resp.Id = role.Id
 	resp.Name = role.Name
 	resp.Keyword = role.Keyword
-	for _,menu := range role.Menus{
-		resp.MenusId = append(resp.MenusId,menu.Id)
+	for _, menu := range role.Menus {
+		resp.MenusId = append(resp.MenusId, menu.Id)
 	}
 	allApi := make([]system.SysApi, 0)
 	// 查询全部api

@@ -1,11 +1,12 @@
 package initialize
 
 import (
-	"anew-server/models/asset"
-	"anew-server/models/system"
-	"anew-server/pkg/common"
-	"anew-server/pkg/zapgorm2"
 	"fmt"
+	"ts-go-server/models/asset"
+	"ts-go-server/models/system"
+	"ts-go-server/pkg/common"
+	"ts-go-server/pkg/zapgorm2"
+
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 )

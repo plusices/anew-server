@@ -1,11 +1,11 @@
 package asciicast2
 
 import (
-	"anew-server/pkg/common"
-	"anew-server/pkg/utils"
 	"encoding/json"
 	"os"
 	"time"
+	"ts-go-server/pkg/common"
+	"ts-go-server/pkg/utils"
 )
 
 const V2OutputEvent = "o"
@@ -13,8 +13,8 @@ const V2InputEvent = "i"
 
 type CastV2Header struct {
 	Version      uint               `json:"version"`
-	Width        int               `json:"width"`
-	Height       int               `json:"height"`
+	Width        int                `json:"width"`
+	Height       int                `json:"height"`
 	Timestamp    int64              `json:"timestamp,omitempty"`
 	Duration     float64            `json:"duration,omitempty"`
 	Title        string             `json:"title,omitempty"`
@@ -23,9 +23,9 @@ type CastV2Header struct {
 	outputStream *json.Encoder
 }
 
-func NewCastV2(meta CastV2Header,file string) (*CastV2Header, *os.File) {
+func NewCastV2(meta CastV2Header, file string) (*CastV2Header, *os.File) {
 	var c CastV2Header
-	f,_ :=os.OpenFile(common.Conf.SSh.RecordDir + "/" + file,os.O_RDWR|os.O_CREATE|os.O_APPEND,0644)
+	f, _ := os.OpenFile(common.Conf.SSh.RecordDir+"/"+file, os.O_RDWR|os.O_CREATE|os.O_APPEND, 0644)
 	c.Version = 2
 	c.Width = meta.Width
 	c.Height = meta.Height

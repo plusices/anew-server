@@ -1,20 +1,22 @@
 package system
 
 import (
-	"anew-server/dto/cacheService"
-	"anew-server/dto/request"
-	"anew-server/dto/response"
-	"anew-server/dto/service"
-	"anew-server/models/system"
-	"anew-server/pkg/common"
-	"anew-server/pkg/redis"
-	"anew-server/pkg/utils"
-	"github.com/gin-gonic/gin"
 	"os"
 	"path"
 	"strconv"
 	"time"
+	"ts-go-server/dto/cacheService"
+	"ts-go-server/dto/request"
+	"ts-go-server/dto/response"
+	"ts-go-server/dto/service"
+	"ts-go-server/models/system"
+	"ts-go-server/pkg/common"
+	"ts-go-server/pkg/redis"
+	"ts-go-server/pkg/utils"
+
+	"github.com/gin-gonic/gin"
 )
+
 // 获取当前请求用户信息,非缓存获取
 func GetCurrentUser(c *gin.Context) system.SysUser {
 	user, exists := c.Get("user")
@@ -279,7 +281,7 @@ func UserAvatarUpload(c *gin.Context) {
 	fileName := username + "_avatar_" + strconv.FormatInt(time.Now().UnixNano(), 8) + path.Ext(file.Filename)
 	imgPath := common.Conf.Upload.SaveDir + "/avatar/" + fileName
 	if !utils.FileExist(common.Conf.Upload.SaveDir) {
-		_ = os.MkdirAll(common.Conf.Upload.SaveDir + "/avatar/",644)
+		_ = os.MkdirAll(common.Conf.Upload.SaveDir+"/avatar/", 644)
 	}
 	err = c.SaveUploadedFile(file, imgPath)
 	if err != nil {

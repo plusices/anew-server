@@ -1,13 +1,14 @@
 package asset
 
 import (
-	"anew-server/api/v1/system"
-	"anew-server/dto/request"
-	"anew-server/dto/response"
-	"anew-server/dto/service"
-	system2 "anew-server/models/system"
-	"anew-server/pkg/common"
-	"anew-server/pkg/utils"
+	"ts-go-server/api/v1/system"
+	"ts-go-server/dto/request"
+	"ts-go-server/dto/response"
+	"ts-go-server/dto/service"
+	system2 "ts-go-server/models/system"
+	"ts-go-server/pkg/common"
+	"ts-go-server/pkg/utils"
+
 	"github.com/gin-gonic/gin"
 )
 

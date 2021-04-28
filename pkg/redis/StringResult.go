@@ -1,8 +1,8 @@
 package redis
 
 import (
-	"anew-server/pkg/common"
 	"fmt"
+	"ts-go-server/pkg/common"
 )
 
 type StringResult struct {

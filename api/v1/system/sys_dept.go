@@ -1,12 +1,13 @@
 package system
 
 import (
-	"anew-server/dto/request"
-	"anew-server/dto/response"
-	"anew-server/dto/service"
-	"anew-server/models/system"
-	"anew-server/pkg/common"
-	"anew-server/pkg/utils"
+	"ts-go-server/dto/request"
+	"ts-go-server/dto/response"
+	"ts-go-server/dto/service"
+	"ts-go-server/models/system"
+	"ts-go-server/pkg/common"
+	"ts-go-server/pkg/utils"
+
 	"github.com/gin-gonic/gin"
 )
 
@@ -22,13 +23,13 @@ func GetDepts(c *gin.Context) {
 	// 创建服务
 	s := service.New()
 	depts := s.GetDepts(&req)
-	if (req.Name != "" || req.Status != nil){
+	if req.Name != "" || req.Status != nil {
 		var newResp []response.DictTreeResp
 		utils.Struct2StructByJson(depts, &newResp)
 		response.SuccessWithData(newResp)
 	} else {
 		var resp []response.DeptTreeResp
-		resp = service.GenDeptTree(nil,depts)
+		resp = service.GenDeptTree(nil, depts)
 		response.SuccessWithData(resp)
 	}
 }

@@ -1,7 +1,8 @@
 package response
 
 import (
-	"anew-server/pkg/common"
+	"ts-go-server/pkg/common"
+
 	"github.com/gin-gonic/gin"
 )
 
